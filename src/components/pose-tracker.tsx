@@ -19,8 +19,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Slider } from "@/components/ui/slider";
 
 // MoveNet model URLs (TensorFlow Hub - reliable CDN)
-const MODEL_URL = "https://tfhub.dev/google/movenet/singlepose/lightning/4";
-const MODEL_CONFIG_URL = "https://tfhub.dev/google/movenet/singlepose/lightning/4?tfhub-format=compressed";
+// Correct TFHub URL for tf.js models
+const MODEL_URL = "https://tfhub.dev/google/tfjs-model/movenet/singlepose/lightning/4";
 
 // Lazy-loaded TF.js references
 let tfModule: typeof import("@tensorflow/tfjs") | null = null;
@@ -107,7 +107,17 @@ export default function PoseTracker() {
     setLoadingStep("Загрузка модели MoveNet...");
     setStatus("loading-model");
 
-    const model = await tf.loadGraphModel(MODEL_URL, { fromTFHub: true });
+    let model;
+    try {
+      model = await tf.loadGraphModel(MODEL_URL, { fromTFHub: true });
+    } catch (modelErr) {
+      // Fallback: try alternate URL format
+      console.warn("Primary model URL failed, trying fallback...", modelErr);
+      model = await tf.loadGraphModel(
+        "https://tfhub.dev/google/movenet/singlepose/lightning/4",
+        { fromTFHub: true }
+      );
+    }
 
     // Warm up the model with a dummy input
     const dummy = tf.zeros([1, 192, 192, 3]);
