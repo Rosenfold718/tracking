@@ -154,4 +154,4 @@ export type BodyPartKey = keyof typeof BODY_PARTS;
 
 // Model URL for MediaPipe Pose Landmarker
 export const POSE_MODEL_URL =
-  "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/latest/pose_landmarker.task";
+  "https://storage.googleapis.com/mediapipe-models/pose_landmarker/pose_landmarker_lite/float16/1/pose_landmarker.task";
