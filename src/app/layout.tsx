@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Отслеживание позы — AI Body Tracker",
-  description: "Реалтайм-трекинг тела, рук, ног и головы через камеру. Построено на MediaPipe от Google.",
-  keywords: ["pose tracking", "MediaPipe", "body tracking", "камера", "трекинг позы", "AI"],
+  description: "Реалтайм-трекинг тела, рук, ног и головы через камеру. Построено на MoveNet / TensorFlow.js от Google.",
+  keywords: ["pose tracking", "MoveNet", "TensorFlow.js", "body tracking", "камера", "трекинг позы", "AI"],
   authors: [{ name: "Rosenfold718" }],
   icons: {
     icon: "https://z-cdn.chatglm.cn/z-ai/static/logo.svg",
